@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://frontendportfolio-1d835.web.app")
+@CrossOrigin
 public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -49,7 +49,7 @@ public class AuthController {
     
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
-        if (bindingResult.hasErrors())
+        if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"),HttpStatus.BAD_REQUEST);
         
         if(usuarioService.existByNombreUsuario(nuevoUsuario.getNombreUsuario()))
@@ -58,7 +58,7 @@ public class AuthController {
         if(usuarioService.existByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
         
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), 
+        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
             nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         
         Set<Rol> roles = new HashSet<>();
@@ -69,18 +69,17 @@ public class AuthController {
         usuario.setRoles(roles);
         usuarioService.save(usuario);
         
-        return new ResponseEntity(new Mensaje("Usuario Guardado"), HttpStatus.CREATED);
+        return new ResponseEntity(new Mensaje("Usuario guardado"),HttpStatus.CREATED);
     }
-
     
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
-       if(bindingResult.hasErrors())
-           return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-       
-       Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-       loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
-       
+        if(bindingResult.hasErrors())
+            return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+        
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+        loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
         
         String jwt = jwtProvider.generateToken(authentication);
@@ -91,4 +90,5 @@ public class AuthController {
         
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+    
 }

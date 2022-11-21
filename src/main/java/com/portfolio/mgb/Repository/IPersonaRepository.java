@@ -8,10 +8,7 @@ import com.portfolio.mgb.Entity.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
-public interface IPersonaRepository extends JpaRepository<Persona,Long>{
+@Repository
+public interface IPersonaRepository extends JpaRepository<Persona,Long> {
     
 }
-
-
-
