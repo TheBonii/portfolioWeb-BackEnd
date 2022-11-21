@@ -86,7 +86,10 @@ public class CEducacion {
      if (StringUtils.isBlank(dtoeducacion.getNombreE())){
          return new ResponseEntity(new Mensaje("El nombre no puede estar vacio"), HttpStatus.BAD_REQUEST);
      }
-
+     if (StringUtils.isBlank(dtoeducacion.getDescripcionE())){
+         return new ResponseEntity(new Mensaje("La descripcion no puede estar vacia"), HttpStatus.BAD_REQUEST);
+     }
+     
      Educacion educacion = sEducacion.getOne(id).get();
      
      educacion.setNombreE(dtoeducacion.getNombreE());
