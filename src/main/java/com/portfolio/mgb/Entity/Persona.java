@@ -38,6 +38,10 @@ public class Persona {
         this.img = img;
     }
 
+    public Persona(String nombre, String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public int getId() {
         return id;
     }
