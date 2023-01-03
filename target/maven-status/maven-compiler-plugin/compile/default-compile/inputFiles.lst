@@ -26,6 +26,7 @@ D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Se
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\MgbApplication.java
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Dto\dtoHys.java
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Controller\CExperiencia.java
+D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Interface\IPersonaService.java
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Security\Entity\UsuarioPrincipal.java
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Controller\PersonaController.java
 D:\Project PortFolio Web\portfolioWeb-BackEnd\src\main\java\com\portfolio\mgb\Service\Seducacion.java
