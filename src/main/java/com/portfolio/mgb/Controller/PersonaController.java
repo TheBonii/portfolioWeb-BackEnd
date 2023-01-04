@@ -58,8 +58,8 @@ public class PersonaController {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(personaService.existsByNombre(dtopersona.getNombre()))
             return new ResponseEntity(new Mensaje("Esa Persona existe"), HttpStatus.BAD_REQUEST);
-        
-        Persona persona = new Persona(dtopersona.getNombre(), dtopersona.getDescripcion());
+       
+        Persona persona = new Persona(dtopersona.getNombre(), dtopersona.getApellido(), dtopersona.getDescripcion(), dtopersona.getImg());
         personaService.save(persona);
         
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
